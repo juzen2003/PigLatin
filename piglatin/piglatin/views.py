@@ -6,14 +6,20 @@ def home(request):
     return render(request, 'home.html')
 
 def translate(request):
+    try:
     # request.GET['originaltext'] -> originaltext inputed from form is passed to translate page from request
-    originaltext = request.GET['originaltext']
-    translationtext = ''
-    for word in originaltext.lower().split():
-        tranlation_word = translation(word)
-        translationtext += tranlation_word + ' '
-    # return HttpResponse(translationtext)
-    return render(request, 'translate.html', {'original': originaltext, 'translation': translationtext})
+        originaltext = request.GET['originaltext']
+        if originaltext == '':
+            raise "No text inputed"
+
+        translationtext = ''
+        for word in originaltext.lower().split():
+            tranlation_word = translation(word)
+            translationtext += tranlation_word + ' '
+        # return HttpResponse(translationtext)
+        return render(request, 'translate.html', {'original': originaltext, 'translation': translationtext})
+    except:
+        return render(request, 'translate.html', {'original': 'No text inputed', 'translation': 'Brah'})
 
 # translate a word into pig latin
 def translation(word):
