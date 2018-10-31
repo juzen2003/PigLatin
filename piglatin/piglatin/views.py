@@ -29,12 +29,6 @@ def translation(word):
     while word[0] not in vowel:
         word = word[1:] + word[0]
 
-    # for idx in range(0, len(word)):
-    #     if word[0] not in vowel:
-    #         word = word[1:] + word[0]
-    #     else:
-    #         break
-
     word = word + 'ay'
     return word
 
