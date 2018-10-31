@@ -31,3 +31,6 @@ def translation(word):
 
     word = word + 'ay'
     return word
+
+def about(request):
+    return render(request, 'about.html')
